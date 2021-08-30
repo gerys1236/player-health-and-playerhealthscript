@@ -1,0 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+public class playerhealth : MonoBehaviour
+{
+    public int maxHealth = 100;
+    public int currentHealth;
+    public int minHealth = 0;
+    public bool IsDead = false;
+    public Slider DeadSlider;
+    
+    public playerhealtscript healthBar; 
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealt(maxHealth);
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            takeDamage(20);
+        }
+    }        
+    void takeDamage(int damage)
+    {
+        currentHealth -= damage;
+        
+        healthBar.SetHealth(currentHealth);
+
+        if (currentHealth <= 0f)
+        {
+            Die();
+        }
+    }
+    void Die()
+    {
+        SceneManager.LoadScene(sceneBuildIndex: 2);
+    }
+}
+      
+
+
+       
+   
